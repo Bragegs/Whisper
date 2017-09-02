@@ -8,11 +8,13 @@ open class ShoutView: UIView {
         public static let indicatorHeight: CGFloat = 6
         public static let indicatorWidth: CGFloat = 50
         public static var imageSize: CGFloat = 48
-        public static let imageOffset: CGFloat = 18
+        public static var imageOffset: CGFloat = 18
         public static var textOffset: CGFloat = 75
         public static var touchOffset: CGFloat = 40
         public static var imageRoundedCorners: Bool = true
         public static var imageTintColor: UIColor?
+        public static var titleFont: UIFont?
+        public static var subtitleFont: UIFont?
     }
     
     open fileprivate(set) lazy var backgroundView: UIView = {
@@ -182,9 +184,19 @@ open class ShoutView: UIView {
         let textOffsetX: CGFloat = imageView.image != nil ? Dimensions.textOffset : 18
         let imageSize: CGFloat = imageView.image != nil ? Dimensions.imageSize : 0
         
+        
+        if let titleFont = Dimensions.titleFont {
+            titleLabel.font = titleFont
+        }
+        
+        if let subtitleFont = Dimensions.subtitleFont {
+            subtitleLabel.font = subtitleFont
+        }
+
+        
         [titleLabel, subtitleLabel].forEach {
             $0.frame.size.height = CGFloat.greatestFiniteMagnitude
-            $0.frame.size.width = totalWidth - imageSize - (Dimensions.imageOffset * 2) - 2
+            $0.frame.size.width = totalWidth - imageSize - (Dimensions.imageOffset * 2) - 8
             $0.sizeToFit()
         }
         
