@@ -12,6 +12,7 @@ open class ShoutView: UIView {
         public static var textOffset: CGFloat = 75
         public static var touchOffset: CGFloat = 40
         public static var imageRoundedCorners: Bool = true
+        public static var imageTintColor: UIColor?
     }
     
     open fileprivate(set) lazy var backgroundView: UIView = {
@@ -138,7 +139,9 @@ open class ShoutView: UIView {
         imageView.contentMode = .scaleAspectFit
         imageView.image = announcement.image
         imageView.layer.cornerRadius = Dimensions.imageRoundedCorners ? (min(imageView.frame.width, imageView.frame.height) / 2) : 0
-        
+        if let imageTintColor = Dimensions.imageTintColor {
+            imageView.tintColor = imageTintColor
+        }
         titleLabel.text = announcement.title
         subtitleLabel.text = announcement.subtitle
         
