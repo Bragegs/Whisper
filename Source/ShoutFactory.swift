@@ -11,6 +11,7 @@ open class ShoutView: UIView {
     public static let imageOffset: CGFloat = 18
     public static var textOffset: CGFloat = 75
     public static var touchOffset: CGFloat = 40
+    public static var imageRoundedCorners: Bool = true
   }
 
   open fileprivate(set) lazy var backgroundView: UIView = {
@@ -33,7 +34,7 @@ open class ShoutView: UIView {
 
   open lazy var imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.layer.cornerRadius = Dimensions.imageSize / 2
+    //imageView.layer.cornerRadius = Dimensions.imageSize / 2
     imageView.clipsToBounds = true
     imageView.contentMode = .scaleAspectFill
 
@@ -127,6 +128,8 @@ open class ShoutView: UIView {
   open func configureView(_ announcement: Announcement) {
     self.announcement = announcement
     imageView.image = announcement.image
+    imageView.layer.cornerRadius = Dimensions.imageRoundedCorners ? (min(imageView.frame.width, imageView.frame.height) / 2) : 0
+
     titleLabel.text = announcement.title
     subtitleLabel.text = announcement.subtitle
 
