@@ -9,7 +9,7 @@ open class ShoutView: UIView {
         public static let indicatorWidth: CGFloat = 50
         public static var imageSize: CGFloat = 48
         public static var imageOffset: CGFloat = 18
-        public static var textOffset: CGFloat = 75
+        //public static var textOffset: CGFloat = 75
         public static var touchOffset: CGFloat = 40
         public static var imageRoundedCorners: Bool = true
         public static var imageTintColor: UIColor?
@@ -181,7 +181,6 @@ open class ShoutView: UIView {
         
         let totalWidth = UIScreen.main.bounds.width
         let offset: CGFloat = UIApplication.shared.isStatusBarHidden ? 2.5 : 5
-        let textOffsetX: CGFloat = imageView.image != nil ? Dimensions.textOffset : 18
         let imageSize: CGFloat = imageView.image != nil ? Dimensions.imageSize : 0
         
         
@@ -205,8 +204,9 @@ open class ShoutView: UIView {
         imageView.frame = CGRect(x: Dimensions.imageOffset, y: (internalHeight - imageSize) / 2 + offset,
                                  width: imageSize, height: imageSize)
         
+        let textOffsetX: CGFloat = imageView.image != nil ? imageView.frame.maxX + Dimensions.imageOffset : 18
         let textOffsetY = imageView.image != nil ? imageView.frame.origin.x + 3 : textOffsetX + 5
-        
+
         titleLabel.frame.origin = CGPoint(x: textOffsetX, y: textOffsetY)
         subtitleLabel.frame.origin = CGPoint(x: textOffsetX, y: titleLabel.frame.maxY + 2.5)
         
